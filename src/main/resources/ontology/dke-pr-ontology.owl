@@ -1,0 +1,335 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://jku.at/lecture#"
+     xml:base="http://jku.at/lecture"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:ns="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:lecture="http://jku.at/lecture#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:wot="http://xmlns.com/wot/0.1/"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://jku.at/lecture">
+        <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://jku.at/lecture#containsCourse -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#containsCourse">
+        <owl:inverseOf rdf:resource="http://jku.at/lecture#isCourseFor"/>
+        <rdfs:domain rdf:resource="http://jku.at/lecture#Curriculum"/>
+        <rdfs:range rdf:resource="http://jku.at/lecture#Course"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#containsLva -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#containsLva">
+        <owl:inverseOf rdf:resource="http://jku.at/lecture#isLvaFor"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://jku.at/lecture#Course"/>
+        <rdfs:range rdf:resource="http://jku.at/lecture#Lva"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#hasAppointment -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#hasAppointment">
+        <owl:inverseOf rdf:resource="http://jku.at/lecture#isAppointmentOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#hasAssocicatedTeacher -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#hasAssocicatedTeacher">
+        <owl:inverseOf rdf:resource="http://jku.at/lecture#isAssociatedWith"/>
+        <rdfs:domain rdf:resource="http://jku.at/lecture#Curriculum"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#hasAvailableLva -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#hasAvailableLva">
+        <owl:inverseOf rdf:resource="http://jku.at/lecture#isAvailableForCurriculum"/>
+        <rdfs:domain rdf:resource="http://jku.at/lecture#Curriculum"/>
+        <rdfs:range rdf:resource="http://jku.at/lecture#Lva"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#hasScheduleType -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#hasScheduleType">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://jku.at/lecture#Lva"/>
+        <rdfs:range rdf:resource="http://jku.at/lecture#ScheduleType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#hasTeacher -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#hasTeacher">
+        <owl:inverseOf rdf:resource="http://jku.at/lecture#isTeacherFor"/>
+        <rdfs:domain rdf:resource="http://jku.at/lecture#Course"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#isAppointmentOf -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#isAppointmentOf"/>
+    
+
+
+    <!-- http://jku.at/lecture#isAssociatedWith -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#isAssociatedWith">
+        <rdfs:domain rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+        <rdfs:range rdf:resource="http://jku.at/lecture#Curriculum"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://jku.at/lecture#isTeaching"/>
+            <rdf:Description rdf:about="http://jku.at/lecture#isLvaFor"/>
+            <rdf:Description rdf:about="http://jku.at/lecture#isCourseFor"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#isAvailableForCurriculum -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#isAvailableForCurriculum">
+        <rdfs:domain rdf:resource="http://jku.at/lecture#Lva"/>
+        <rdfs:range rdf:resource="http://jku.at/lecture#Curriculum"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://jku.at/lecture#isLvaFor"/>
+            <rdf:Description rdf:about="http://jku.at/lecture#isCourseFor"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#isCourseFor -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#isCourseFor">
+        <rdfs:domain rdf:resource="http://jku.at/lecture#Course"/>
+        <rdfs:range rdf:resource="http://jku.at/lecture#Curriculum"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#isLvaFor -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#isLvaFor">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://jku.at/lecture#Lva"/>
+        <rdfs:range rdf:resource="http://jku.at/lecture#Course"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#isTeacherFor -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#isTeacherFor">
+        <rdfs:domain rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+        <rdfs:range rdf:resource="http://jku.at/lecture#Course"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://jku.at/lecture#isTeaching"/>
+            <rdf:Description rdf:about="http://jku.at/lecture#isLvaFor"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#isTeaching -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#isTeaching">
+        <owl:inverseOf rdf:resource="http://jku.at/lecture#teachedBy"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+        <rdfs:range rdf:resource="http://jku.at/lecture#Lva"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://jku.at/lecture#teachedBy -->
+
+    <owl:ObjectProperty rdf:about="http://jku.at/lecture#teachedBy">
+        <rdfs:domain rdf:resource="http://jku.at/lecture#Lva"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/knows -->
+
+    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/knows">
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://jku.at/lecture#isTeacherFor"/>
+            <rdf:Description rdf:about="http://jku.at/lecture#hasTeacher"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://jku.at/lecture#isTeaching"/>
+            <rdf:Description rdf:about="http://jku.at/lecture#teachedBy"/>
+        </owl:propertyChainAxiom>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://jku.at/lecture#courseDateTime -->
+
+    <owl:DatatypeProperty rdf:about="http://jku.at/lecture#courseDateTime">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://jku.at/lecture#curId -->
+
+    <owl:DatatypeProperty rdf:about="http://jku.at/lecture#curId"/>
+    
+
+
+    <!-- http://jku.at/lecture#lvaType -->
+
+    <owl:DatatypeProperty rdf:about="http://jku.at/lecture#lvaType"/>
+    
+
+
+    <!-- http://jku.at/lecture#name -->
+
+    <owl:DatatypeProperty rdf:about="http://jku.at/lecture#name">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://jku.at/lecture#room -->
+
+    <owl:DatatypeProperty rdf:about="http://jku.at/lecture#room">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://jku.at/lecture#semester -->
+
+    <owl:DatatypeProperty rdf:about="http://jku.at/lecture#semester">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://jku.at/lecture#year -->
+
+    <owl:DatatypeProperty rdf:about="http://jku.at/lecture#year">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://jku.at/lecture#Appointment -->
+
+    <owl:Class rdf:about="http://jku.at/lecture#Appointment">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://jku.at/lecture#courseDateTime"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://jku.at/lecture#room"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://jku.at/lecture#Course -->
+
+    <owl:Class rdf:about="http://jku.at/lecture#Course"/>
+    
+
+
+    <!-- http://jku.at/lecture#Curriculum -->
+
+    <owl:Class rdf:about="http://jku.at/lecture#Curriculum"/>
+    
+
+
+    <!-- http://jku.at/lecture#Lva -->
+
+    <owl:Class rdf:about="http://jku.at/lecture#Lva"/>
+    
+
+
+    <!-- http://jku.at/lecture#ScheduleType -->
+
+    <owl:Class rdf:about="http://jku.at/lecture#ScheduleType"/>
+    
+
+
+    <!-- http://jku.at/lecture#Teacher -->
+
+    <owl:Class rdf:about="http://jku.at/lecture#Teacher">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://jku.at/lecture#isTeaching"/>
+                <owl:someValuesFrom rdf:resource="http://jku.at/lecture#Lva"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
