@@ -135,12 +135,11 @@ public class FusekiServerDKEPR {
 
     private Resource createLVA(XmlLva xmlLva, String semester) {
         Model model = this.ds.getDefaultModel();
-
         Resource lva = model.createResource(LECTURE.NS + xmlLva.getId() + "_" + semester, LECTURE.Lva)
                 .addProperty(LECTURE.isLvaFor, model.getResource(LECTURE.NS + xmlLva.getName().replaceAll(" ", "") + "_" + xmlLva.getSubjectType()))
-                .addProperty(LECTURE.name, xmlLva.getId())
                 .addProperty(LECTURE.year, Integer.toString(xmlLva.getTermYear()))
-                .addProperty(LECTURE.semester, xmlLva.getTermSemester().toString());
+                .addProperty(LECTURE.semester, xmlLva.getTermSemester().toString())
+                .addProperty(LECTURE.name, xmlLva.getId());
 
         Set<Resource> teachers = createTeachers(xmlLva.getTeachers());
 
