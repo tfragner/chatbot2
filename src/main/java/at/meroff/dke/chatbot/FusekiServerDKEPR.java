@@ -138,6 +138,7 @@ public class FusekiServerDKEPR {
 
         Resource lva = model.createResource(LECTURE.NS + xmlLva.getId() + "_" + semester, LECTURE.Lva)
                 .addProperty(LECTURE.isLvaFor, model.getResource(LECTURE.NS + xmlLva.getName().replaceAll(" ", "") + "_" + xmlLva.getSubjectType()))
+                .addProperty(LECTURE.name, xmlLva.getId())
                 .addProperty(LECTURE.year, Integer.toString(xmlLva.getTermYear()))
                 .addProperty(LECTURE.semester, xmlLva.getTermSemester().toString());
 
